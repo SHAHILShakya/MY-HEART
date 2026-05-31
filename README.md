@@ -42,5 +42,6 @@ To explore this digital canvas on your local machine, follow these steps:
 
 1. **Clone the repository:**
 ```bash
-   git clone [https://github.com/YOUR_USERNAME/my-heart.git](https://github.com/YOUR_USERNAME/my-heart.git)
-   cd my-heart
+   git clone https://github.com/SHAHILShakya/MY-HEART.git
+   cd MY-HEART
+
