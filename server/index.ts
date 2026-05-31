@@ -14,7 +14,9 @@ app.use((req, res, next) => {
   const originalResJson = res.json;
   res.json = function (bodyJson: any, ...args: any[]) {
     capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
+    // TypeScript typing for res.json expects a single optional body param.
+    // Cast to any to allow forwarding additional args if present.
+    return (originalResJson as any).apply(res, [bodyJson, ...args]);
   };
 
   res.on("finish", () => {
@@ -62,7 +64,7 @@ app.use((req, res, next) => {
   // It is the only port that is not firewalled.
   const env = (globalThis as any).process?.env;
   const port = parseInt(env?.PORT || '5000', 10);
-  const host = env?.HOST || "127.0.0.1";
+  const host = env?.HOST || "0.0.0.0";
 
   server.listen({
     port,
